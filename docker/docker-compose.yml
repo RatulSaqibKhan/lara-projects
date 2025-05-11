@@ -19,3 +19,18 @@ services:
       common-net:
         aliases:
         - common_lara_classic_app
+  
+  octane-app:
+    image: ${COMPOSE_PROJECT_NAME}-octane-app:${DOCKER_BUILD_MODE}
+    container_name: ${COMPOSE_PROJECT_NAME}-octane-app
+    build:
+      context: ${DOCKER_BUILD_CONTEXT_DIR}
+      dockerfile: docker/apps/dockerfiles/lara-octane/Dockerfile
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      default:
+      common-net:
+        aliases:
+        - common_lara_octane_app
